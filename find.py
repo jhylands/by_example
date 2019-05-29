@@ -20,3 +20,21 @@ def find(f_gen, ex):
         except Exception as e:
             print e
     return {'call':call_with, 'depth':deeper}
+
+
+
+def find2(f_gen,ex):
+    for attr in dir(__builtins__):
+        f = f_gen()
+        try:
+            if attr=='type':
+                print "TYPE"
+            a = getattr(__builtins__,attr)
+            if callable(a):
+                if a(f)==ex:
+                    print 'Found'
+                    return "%s(%s)"%(attr, f)
+            else:
+                print a
+        except Exception as e:
+            print e
