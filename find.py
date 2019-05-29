@@ -1,4 +1,22 @@
-def find(f_gen, ex):
+'''
+What we want to have here is a tuple of 
+the input and the output
+However we want to be more general than that 
+we want to be able to find functions that
+modify state in the way that we want.
+'''
+
+class search:
+    def __init__(self, generator, checker, hints=[]):
+        self.generator = generator
+        self.checker = checker
+        self.hints = hints
+'''
+find
+ - A dictionary of generator, checker, hints
+
+'''
+def find(search_list, general_hints):
     call_with = []
     deeper = []
     for att in dir(f_gen()):
@@ -23,18 +41,14 @@ def find(f_gen, ex):
 
 
 
-def find2(f_gen,ex):
-    for attr in dir(__builtins__):
-        f = f_gen()
+def find2(get_f, ex):
+    for a in dir(__builtins__):
+        if a in ['exit','quit','help','input','raw_input']:
+            continue
+        print a
+        b = getattr(__builtins__,a)
         try:
-            if attr=='type':
-                print "TYPE"
-            a = getattr(__builtins__,attr)
-            if callable(a):
-                if a(f)==ex:
-                    print 'Found'
-                    return "%s(%s)"%(attr, f)
-            else:
-                print a
+            if b(get_f())==ex:
+                return b
         except Exception as e:
             print e
