@@ -16,7 +16,7 @@ find
  - A dictionary of generator, checker, hints
 
 '''
-def find(search_list, general_hints):
+def find(f_gen,ex, search_list=[], general_hints=[]):
     call_with = []
     deeper = []
     for att in dir(f_gen()):

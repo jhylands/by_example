@@ -1,4 +1,5 @@
 from inspect import getargspec as spec
+from math import isnan
 def arg_no(f):
     try:
         if spec(f).defaults is None: return 0

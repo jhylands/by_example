@@ -1,0 +1,25 @@
+First we want to try the function on the first element of our search list, then keep going until we have either; gone through our search list, and we accept or we break out either due to an incorrect value or an error.
+
+functions (f1 ... fn)
+search_list (s1 ... sn)
+
+# Scenario 1
+f1(s1) # Type fail
+f2(s1) # passes
+f2(s2) # fails wrong value, added to depth stack
+f3(s1) # passes
+f3(s2)
+:
+f3(sn) # passes, function accepted
+
+
+# Scenario 2
+f1(s1) # Type fail
+f2(s1) # passes
+f2(s2) # fails wrong value, added to depth stack
+f3(s1) # passes
+f3(s2) # fails wrong value
+:
+fn(s1) # Fails, but is last function
+f1(f2(s1)) # Fails TypeError
+f2(f2(s1)) # (note to look out for idempotence)
