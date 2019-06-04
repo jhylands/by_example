@@ -6,17 +6,30 @@ we want to be able to find functions that
 modify state in the way that we want.
 '''
 
-class search:
+class Search:
     def __init__(self, generator, checker, hints=[]):
         self.generator = generator
         self.checker = checker
         self.hints = hints
+
+'''
+search a function that expands a node 
+looking to see if there is anything there worth using
+
+How do we expand?
+ - dir(generated_object)
+ - dir(builtins)
+ - imported functions for example np.mean
+'''
+@wrapped
+def search(f,h, acc):
+    return acc(f(*h))
 '''
 find
  - A dictionary of generator, checker, hints
 
 '''
-def find(f_gen,ex, search_list=[], general_hints=[]):
+def find(search_list=[], general_hints=[0,1,-1,2]):
     call_with = []
     deeper = []
     for att in dir(f_gen()):

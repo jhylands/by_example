@@ -23,3 +23,8 @@ f3(s2) # fails wrong value
 fn(s1) # Fails, but is last function
 f1(f2(s1)) # Fails TypeError
 f2(f2(s1)) # (note to look out for idempotence)
+
+For deeper searches we will want to store intermediate values so not to have to calculate them again.
+
+For a given node we need to expand that node to its branches.
+
